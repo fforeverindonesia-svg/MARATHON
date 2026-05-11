@@ -3,182 +3,363 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QRIS RUN Registration</title>
-
+<title>Registrasi QRIS Run 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#0d0d0d;
-color:white;
-overflow-x:hidden;
+background:#f5f5f5;
+color:#111;
 }
 
 .container{
-max-width:500px;
+max-width:700px;
 margin:auto;
+background:#fff;
+min-height:100vh;
+padding-bottom:50px;
+}
+
+.header{
+padding:20px;
+text-align:center;
+background:#fff;
+border-bottom:1px solid #eee;
+}
+
+.logo{
+width:80px;
+border-radius:14px;
+margin-bottom:10px;
+}
+
+.title{
+font-size:38px;
+font-weight:600;
+line-height:1.2;
+color:#1b2a41;
 padding:20px;
 }
 
 .banner{
 width:100%;
-border-radius:20px;
-margin-bottom:20px;
-box-shadow:0 0 20px rgba(0,255,255,0.3);
+padding:0 20px;
 }
 
-.card{
-background:#151515;
-padding:20px;
-border-radius:20px;
-box-shadow:0 0 15px rgba(255,255,255,0.05);
-margin-bottom:20px;
-}
-
-h1{
-text-align:center;
-margin-bottom:20px;
-font-size:28px;
-}
-
-input,select{
+.banner img{
 width:100%;
-padding:14px;
-margin-top:10px;
-border:none;
-border-radius:12px;
-background:#222;
-color:white;
-font-size:15px;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form-box{
+padding:25px;
+}
+
+.field{
+margin-bottom:24px;
 }
 
 label{
 display:block;
-margin-top:15px;
-font-size:14px;
+font-size:16px;
+font-weight:600;
+margin-bottom:10px;
+color:#222;
 }
 
-button{
+input,
+select{
 width:100%;
-padding:15px;
-margin-top:20px;
-border:none;
-border-radius:15px;
-background:linear-gradient(45deg,#00c3ff,#0066ff);
-color:white;
-font-size:17px;
-font-weight:bold;
-cursor:pointer;
+padding:16px;
+border:2px solid #dcdcdc;
+border-radius:14px;
+font-size:15px;
+outline:none;
 transition:0.3s;
+background:#fff;
 }
 
-button:hover{
-transform:scale(1.02);
-opacity:0.9;
+input:focus,
+select:focus{
+border-color:#6d3df5;
+box-shadow:0 0 10px rgba(109,61,245,0.2);
 }
 
-.hidden{
-display:none;
-}
-
-.qris{
-width:100%;
-border-radius:20px;
-margin-top:15px;
-}
-
-.timer{
-text-align:center;
-font-size:30px;
-margin-top:15px;
-font-weight:bold;
-color:#00e5ff;
+.note{
+font-size:13px;
+color:#777;
+margin-top:8px;
 }
 
 .sizechart{
 width:100%;
-margin-top:15px;
-border-radius:15px;
+border-radius:18px;
+margin-top:10px;
+}
+
+.checkbox-wrap{
+display:flex;
+align-items:flex-start;
+gap:12px;
+background:#f8f8f8;
+padding:18px;
+border-radius:14px;
+}
+
+.checkbox-wrap input{
+width:auto;
+margin-top:4px;
+transform:scale(1.3);
+}
+
+.submit-btn{
+width:100%;
+padding:18px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#6d3df5,#8f5bff);
+color:#fff;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:0.3s;
+opacity:0.5;
+pointer-events:none;
+box-shadow:0 10px 25px rgba(109,61,245,0.3);
+}
+
+.submit-btn.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.submit-btn:hover{
+transform:translateY(-2px);
+}
+
+.payment-page{
+display:none;
+padding:25px;
+}
+
+.payment-card{
+background:#111;
+color:#fff;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.payment-card h2{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.payment-card p{
+opacity:0.9;
+margin-bottom:20px;
+}
+
+.qris{
+width:100%;
+max-width:350px;
+border-radius:18px;
+margin:20px auto;
+display:block;
+background:#fff;
+padding:10px;
+}
+
+.timer{
+font-size:50px;
+font-weight:700;
+margin:20px 0;
+color:#7d5cff;
+}
+
+.upload-box{
+margin-top:25px;
+text-align:left;
+}
+
+.upload-box input{
+background:#fff;
+color:#000;
+}
+
+.pay-btn{
+width:100%;
+padding:18px;
+margin-top:20px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#6d3df5,#8f5bff);
+color:#fff;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+opacity:0.5;
+pointer-events:none;
+}
+
+.pay-btn.active{
+opacity:1;
+pointer-events:auto;
 }
 
 .success{
+display:none;
+padding:40px 25px;
 text-align:center;
-padding:30px;
 }
 
-.success h2{
-font-size:30px;
-margin-bottom:15px;
-color:#00ff99;
+.success h1{
+font-size:40px;
+color:#6d3df5;
+margin-bottom:20px;
 }
 
-.blur{
-position:fixed;
-width:300px;
-height:300px;
-background:#00c3ff;
-filter:blur(120px);
-opacity:0.2;
-z-index:-1;
-animation:move 10s infinite alternate;
+.success p{
+font-size:18px;
+line-height:1.7;
+color:#555;
 }
 
-.blur2{
-right:0;
-bottom:0;
-background:#0066ff;
+@media(max-width:600px){
+.title{
+font-size:28px;
 }
 
-@keyframes move{
-from{
-transform:translateY(0px);
+.payment-card h2{
+font-size:24px;
 }
-to{
-transform:translateY(100px);
+
+.timer{
+font-size:40px;
 }
 }
 </style>
 </head>
-
 <body>
-
-<div class="blur"></div>
-<div class="blur blur2"></div>
 
 <div class="container">
 
-<img src="banner.jpg" class="banner">
+<div id="formPage">
 
-<div class="card" id="formCard">
+<div class="header">
+<img src="banner.jpg" class="logo">
+</div>
 
-<h1>QRIS RUN REGISTRATION</h1>
+<h1 class="title">Registrasi Adipati QRIS Run 2026</h1>
 
-<form id="regForm">
+<div class="banner">
+<img src="banner.jpg">
+</div>
 
-<label>Nama Lengkap</label>
-<input type="text" id="nama" required>
+<div class="form-box">
+<form id="registrationForm">
 
-<label>Email</label>
-<input type="email" id="email" required>
-
-<label>Nomor WhatsApp</label>
-<input type="tel" id="wa" required>
-
-<label>Kategori Lari</label>
-<select id="kategori" required>
-<option value="">Pilih Category</option>
-<option>5K RUN</option>
-<option>10K RUN</option>
+<div class="field">
+<label>Category *</label>
+<select required>
+<option value="">Choose Category</option>
+<option>10K</option>
+<option>5K</option>
 </select>
+</div>
 
-<label>Ukuran Jersey</label>
-<select id="size" required>
-<option value="">Pilih Size</option>
+<div class="field">
+<label>E-mail Address *</label>
+<input type="email" required placeholder="Email Address">
+</div>
+
+<div class="field">
+<label>Full Name *</label>
+<input type="text" required placeholder="Full Name">
+</div>
+
+<div class="field">
+<label>Gender *</label>
+<select required>
+<option value="">Choose Gender</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
+
+<div class="field">
+<label>Name on BIB *</label>
+<input type="text" required placeholder="Name on BIB">
+</div>
+
+<div class="field">
+<label>Phone Number *</label>
+<input type="tel" required placeholder="Phone Number">
+</div>
+
+<div class="field">
+<label>Place Birth *</label>
+<input type="text" required placeholder="Place Birth">
+</div>
+
+<div class="field">
+<label>Date of Birth *</label>
+<input type="date" required>
+</div>
+
+<div class="field">
+<label>ID Number *</label>
+<input type="number" required placeholder="ID Number">
+</div>
+
+<div class="field">
+<label>Full Address *</label>
+<input type="text" required placeholder="Full Address">
+</div>
+
+<div class="field">
+<label>Kecamatan *</label>
+<input type="text" required placeholder="Kecamatan">
+</div>
+
+<div class="field">
+<label>Provinsi *</label>
+<input type="text" required placeholder="Provinsi">
+</div>
+
+<div class="field">
+<label>Country *</label>
+<input type="text" required placeholder="Country">
+</div>
+
+<div class="field">
+<label>Nationality *</label>
+<input type="text" required placeholder="Nationality">
+</div>
+
+<div class="field">
+<label>Blood Type *</label>
+<select required>
+<option value="">Choose Blood Type</option>
+<option>A</option>
+<option>B</option>
+<option>AB</option>
+<option>O</option>
+</select>
+</div>
+
+<div class="field">
+<label>Jersey Size *</label>
+<select required>
+<option value="">Choose Jersey Size</option>
 <option>S</option>
 <option>M</option>
 <option>L</option>
@@ -187,108 +368,131 @@ transform:translateY(100px);
 </select>
 
 <img src="sizechart.jpg" class="sizechart">
+</div>
 
-<label>Upload Bukti Pembayaran</label>
-<input type="file" accept="image/*" required>
+<div class="field">
+<label>Target Finish Time *</label>
+<input type="text" required placeholder="Example: 01:30:00">
+</div>
 
-<button type="submit">LANJUT PEMBAYARAN</button>
+<div class="field">
+<div class="checkbox-wrap">
+<input type="checkbox" id="agree" required>
+<label for="agree">I HAVE READ and ACCEPT the terms & conditions *</label>
+</div>
+</div>
+
+<button type="submit" class="submit-btn" id="submitBtn">SUBMIT REGISTRATION</button>
 
 </form>
 </div>
+</div>
 
-<div class="card hidden" id="paymentCard">
+<div class="payment-page" id="paymentPage">
+<div class="payment-card">
+<h2>PAYMENT QRIS</h2>
+<p>Please complete your payment before timer ends</p>
 
-<h1>PEMBAYARAN QRIS</h1>
-
-<p style="text-align:center;">
-Silahkan scan QRIS dibawah ini untuk menyelesaikan pembayaran.
-</p>
+<div class="timer" id="timer">05:00</div>
 
 <img src="qris.png" class="qris">
 
-<div class="timer" id="timer">
-05:00
+<div class="upload-box">
+<label>Upload Bukti Pembayaran *</label>
+<input type="file" id="paymentProof" accept="image/*" required>
 </div>
 
-<button onclick="finishPayment()">
-SAYA SUDAH BAYAR
-</button>
-
+<button class="pay-btn" id="finalSubmit">SUBMIT PAYMENT</button>
+</div>
 </div>
 
-<div class="card hidden success" id="successCard">
-
-<h2>PEMBAYARAN BERHASIL</h2>
-
+<div class="success" id="successPage">
+<h1>SUCCESS</h1>
 <p>
-Data pendaftaran berhasil dikirim.
-Panitia akan menghubungi peserta melalui WhatsApp.
+Pendaftaran berhasil dikirim.<br>
+Terima kasih telah melakukan registrasi QRIS Run 2026.
 </p>
-
-<button onclick="location.reload()">
-KEMBALI
-</button>
-
 </div>
 
 </div>
 
 <script>
+const form = document.getElementById('registrationForm');
+const inputs = form.querySelectorAll('input, select');
+const submitBtn = document.getElementById('submitBtn');
+const paymentProof = document.getElementById('paymentProof');
+const finalSubmit = document.getElementById('finalSubmit');
 
-const form = document.getElementById("regForm");
-const formCard = document.getElementById("formCard");
-const paymentCard = document.getElementById("paymentCard");
-const successCard = document.getElementById("successCard");
+function validateForm(){
+let valid = true;
 
-form.addEventListener("submit", function(e){
+inputs.forEach(input=>{
+if(!input.checkValidity()){
+valid = false;
+}
+});
+
+if(valid){
+submitBtn.classList.add('active');
+}else{
+submitBtn.classList.remove('active');
+}
+}
+
+inputs.forEach(input=>{
+input.addEventListener('input',validateForm);
+input.addEventListener('change',validateForm);
+});
+
+form.addEventListener('submit',function(e){
 e.preventDefault();
 
-formCard.classList.add("hidden");
-paymentCard.classList.remove("hidden");
+document.getElementById('formPage').style.display='none';
+document.getElementById('paymentPage').style.display='block';
 
 startTimer();
 });
 
-let time = 300;
-let countdown;
+paymentProof.addEventListener('change',()=>{
+if(paymentProof.files.length > 0){
+finalSubmit.classList.add('active');
+}else{
+finalSubmit.classList.remove('active');
+}
+});
+
+finalSubmit.addEventListener('click',()=>{
+document.getElementById('paymentPage').style.display='none';
+document.getElementById('successPage').style.display='block';
+
+setTimeout(()=>{
+location.reload();
+},5000);
+});
 
 function startTimer(){
+let time = 300;
 
-countdown = setInterval(()=>{
+const timer = document.getElementById('timer');
 
+const countdown = setInterval(()=>{
 let minutes = Math.floor(time / 60);
 let seconds = time % 60;
 
-seconds = seconds < 10 ? "0"+seconds : seconds;
+minutes = minutes < 10 ? '0'+minutes : minutes;
+seconds = seconds < 10 ? '0'+seconds : seconds;
 
-document.getElementById("timer").innerHTML =
-minutes + ":" + seconds;
+timer.innerHTML = `${minutes}:${seconds}`;
+
+if(time <= 0){
+clearInterval(countdown);
+alert('Waktu pembayaran habis!');
+location.reload();
+}
 
 time--;
-
-if(time < 0){
-
-clearInterval(countdown);
-
-alert("Waktu pembayaran habis");
-
-location.reload();
-
-}
-
 },1000);
-
 }
-
-function finishPayment(){
-
-clearInterval(countdown);
-
-paymentCard.classList.add("hidden");
-successCard.classList.remove("hidden");
-
-}
-
 </script>
 
 </body>
