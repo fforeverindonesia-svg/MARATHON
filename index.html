@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QRIS RUN Registration</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0d0d0d;
+color:white;
+overflow-x:hidden;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+.banner{
+width:100%;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 0 20px rgba(0,255,255,0.3);
+}
+
+.card{
+background:#151515;
+padding:20px;
+border-radius:20px;
+box-shadow:0 0 15px rgba(255,255,255,0.05);
+margin-bottom:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+font-size:28px;
+}
+
+input,select{
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+background:#222;
+color:white;
+font-size:15px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-size:14px;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:20px;
+border:none;
+border-radius:15px;
+background:linear-gradient(45deg,#00c3ff,#0066ff);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.02);
+opacity:0.9;
+}
+
+.hidden{
+display:none;
+}
+
+.qris{
+width:100%;
+border-radius:20px;
+margin-top:15px;
+}
+
+.timer{
+text-align:center;
+font-size:30px;
+margin-top:15px;
+font-weight:bold;
+color:#00e5ff;
+}
+
+.sizechart{
+width:100%;
+margin-top:15px;
+border-radius:15px;
+}
+
+.success{
+text-align:center;
+padding:30px;
+}
+
+.success h2{
+font-size:30px;
+margin-bottom:15px;
+color:#00ff99;
+}
+
+.blur{
+position:fixed;
+width:300px;
+height:300px;
+background:#00c3ff;
+filter:blur(120px);
+opacity:0.2;
+z-index:-1;
+animation:move 10s infinite alternate;
+}
+
+.blur2{
+right:0;
+bottom:0;
+background:#0066ff;
+}
+
+@keyframes move{
+from{
+transform:translateY(0px);
+}
+to{
+transform:translateY(100px);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="blur"></div>
+<div class="blur blur2"></div>
+
+<div class="container">
+
+<img src="banner.jpg" class="banner">
+
+<div class="card" id="formCard">
+
+<h1>QRIS RUN REGISTRATION</h1>
+
+<form id="regForm">
+
+<label>Nama Lengkap</label>
+<input type="text" id="nama" required>
+
+<label>Email</label>
+<input type="email" id="email" required>
+
+<label>Nomor WhatsApp</label>
+<input type="tel" id="wa" required>
+
+<label>Kategori Lari</label>
+<select id="kategori" required>
+<option value="">Pilih Category</option>
+<option>5K RUN</option>
+<option>10K RUN</option>
+</select>
+
+<label>Ukuran Jersey</label>
+<select id="size" required>
+<option value="">Pilih Size</option>
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+<option>XXL</option>
+</select>
+
+<img src="sizechart.jpg" class="sizechart">
+
+<label>Upload Bukti Pembayaran</label>
+<input type="file" accept="image/*" required>
+
+<button type="submit">LANJUT PEMBAYARAN</button>
+
+</form>
+</div>
+
+<div class="card hidden" id="paymentCard">
+
+<h1>PEMBAYARAN QRIS</h1>
+
+<p style="text-align:center;">
+Silahkan scan QRIS dibawah ini untuk menyelesaikan pembayaran.
+</p>
+
+<img src="qris.png" class="qris">
+
+<div class="timer" id="timer">
+05:00
+</div>
+
+<button onclick="finishPayment()">
+SAYA SUDAH BAYAR
+</button>
+
+</div>
+
+<div class="card hidden success" id="successCard">
+
+<h2>PEMBAYARAN BERHASIL</h2>
+
+<p>
+Data pendaftaran berhasil dikirim.
+Panitia akan menghubungi peserta melalui WhatsApp.
+</p>
+
+<button onclick="location.reload()">
+KEMBALI
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const form = document.getElementById("regForm");
+const formCard = document.getElementById("formCard");
+const paymentCard = document.getElementById("paymentCard");
+const successCard = document.getElementById("successCard");
+
+form.addEventListener("submit", function(e){
+e.preventDefault();
+
+formCard.classList.add("hidden");
+paymentCard.classList.remove("hidden");
+
+startTimer();
+});
+
+let time = 300;
+let countdown;
+
+function startTimer(){
+
+countdown = setInterval(()=>{
+
+let minutes = Math.floor(time / 60);
+let seconds = time % 60;
+
+seconds = seconds < 10 ? "0"+seconds : seconds;
+
+document.getElementById("timer").innerHTML =
+minutes + ":" + seconds;
+
+time--;
+
+if(time < 0){
+
+clearInterval(countdown);
+
+alert("Waktu pembayaran habis");
+
+location.reload();
+
+}
+
+},1000);
+
+}
+
+function finishPayment(){
+
+clearInterval(countdown);
+
+paymentCard.classList.add("hidden");
+successCard.classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
