@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Registrasi QRIS Run 2026</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 *{
 margin:0;
@@ -33,10 +35,10 @@ background:#fff;
 border-bottom:1px solid #eee;
 }
 
-.logo{
-width:80px;
-border-radius:14px;
-margin-bottom:10px;
+.extra-kuota{
+font-size:28px;
+font-weight:700;
+color:#6d3df5;
 }
 
 .title{
@@ -45,6 +47,7 @@ font-weight:600;
 line-height:1.2;
 color:#1b2a41;
 padding:20px;
+text-align:center;
 }
 
 .banner{
@@ -90,12 +93,6 @@ input:focus,
 select:focus{
 border-color:#6d3df5;
 box-shadow:0 0 10px rgba(109,61,245,0.2);
-}
-
-.note{
-font-size:13px;
-color:#777;
-margin-top:8px;
 }
 
 .sizechart{
@@ -248,19 +245,28 @@ font-size:40px;
 }
 </style>
 </head>
+
 <body>
 
+<!-- FORM PAGE -->
+<div class="container" id="formPage">
+
 <div class="header">
-<div class="extra-kuota">TAMBAHAN KUOTA EXTRA</div>
+<div class="extra-kuota">
+TAMBAHAN KUOTA EXTRA
+</div>
 </div>
 
-<h1 class="title">Registrasi Adipati QRIS Run 2026</h1>
+<h1 class="title">
+Registrasi Adipati QRIS Run 2026
+</h1>
 
 <div class="banner">
-<img src="banner.jpg">
+<img src="banner.jpg" alt="Banner">
 </div>
 
 <div class="form-box">
+
 <form id="registrationForm">
 
 <div class="field">
@@ -374,58 +380,80 @@ font-size:40px;
 <div class="field">
 <div class="checkbox-wrap">
 <input type="checkbox" id="agree" required>
-<label for="agree">I HAVE READ and ACCEPT the terms & conditions *</label>
+<label for="agree">
+I HAVE READ and ACCEPT the terms & conditions *
+</label>
 </div>
 </div>
 
-<button type="submit" class="submit-btn" id="submitBtn">SUBMIT REGISTRATION</button>
+<button type="submit" class="submit-btn" id="submitBtn">
+SUBMIT REGISTRATION
+</button>
 
 </form>
 </div>
 </div>
 
+<!-- PAYMENT PAGE -->
 <div class="payment-page" id="paymentPage">
-<div class="payment-card">
-<h2>PAYMENT QRIS</h2>
-<p>Please complete your payment before timer ends</p>
 
-<div class="timer" id="timer">05:00</div>
+<div class="payment-card">
+
+<h2>PAYMENT QRIS</h2>
+
+<p>
+Please complete your payment before timer ends
+</p>
+
+<div class="timer" id="timer">
+05:00
+</div>
 
 <img src="qris.png" class="qris">
 
 <div class="upload-box">
 <label>Upload Bukti Pembayaran *</label>
-<input type="file" id="paymentProof" accept="image/*" required>
+<input type="file" id="paymentProof" accept="image/*">
 </div>
 
-<button class="pay-btn" id="finalSubmit">SUBMIT PAYMENT</button>
+<button class="pay-btn" id="finalSubmit">
+SUBMIT PAYMENT
+</button>
+
 </div>
 </div>
 
+<!-- SUCCESS PAGE -->
 <div class="success" id="successPage">
+
 <h1>SUCCESS</h1>
+
 <p>
 Pendaftaran berhasil dikirim.<br>
 Terima kasih telah melakukan registrasi QRIS Run 2026.
 </p>
-</div>
 
 </div>
 
 <script>
+
 const form = document.getElementById('registrationForm');
 const inputs = form.querySelectorAll('input, select');
 const submitBtn = document.getElementById('submitBtn');
+
 const paymentProof = document.getElementById('paymentProof');
 const finalSubmit = document.getElementById('finalSubmit');
 
 function validateForm(){
+
 let valid = true;
 
 inputs.forEach(input=>{
+
 if(!input.checkValidity()){
 valid = false;
 }
+
 });
 
 if(valid){
@@ -433,45 +461,60 @@ submitBtn.classList.add('active');
 }else{
 submitBtn.classList.remove('active');
 }
+
 }
 
 inputs.forEach(input=>{
+
 input.addEventListener('input',validateForm);
 input.addEventListener('change',validateForm);
+
 });
 
 form.addEventListener('submit',function(e){
+
 e.preventDefault();
 
 document.getElementById('formPage').style.display='none';
 document.getElementById('paymentPage').style.display='block';
 
 startTimer();
+
 });
 
 paymentProof.addEventListener('change',()=>{
+
 if(paymentProof.files.length > 0){
+
 finalSubmit.classList.add('active');
+
 }else{
+
 finalSubmit.classList.remove('active');
+
 }
+
 });
 
 finalSubmit.addEventListener('click',()=>{
+
 document.getElementById('paymentPage').style.display='none';
 document.getElementById('successPage').style.display='block';
 
 setTimeout(()=>{
 location.reload();
 },5000);
+
 });
 
 function startTimer(){
+
 let time = 300;
 
 const timer = document.getElementById('timer');
 
 const countdown = setInterval(()=>{
+
 let minutes = Math.floor(time / 60);
 let seconds = time % 60;
 
@@ -481,14 +524,21 @@ seconds = seconds < 10 ? '0'+seconds : seconds;
 timer.innerHTML = `${minutes}:${seconds}`;
 
 if(time <= 0){
+
 clearInterval(countdown);
+
 alert('Waktu pembayaran habis!');
+
 location.reload();
+
 }
 
 time--;
+
 },1000);
+
 }
+
 </script>
 
 </body>
